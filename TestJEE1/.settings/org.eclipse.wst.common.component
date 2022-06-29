@@ -1,20 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-            
-    
-    <wb-module deploy-name="Exo2">
-                        
         
+    <wb-module deploy-name="TestJEE1">
+                
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
-                        
-        
+                
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
-                        
-        
-        <property name="java-output-path" value="/Exo2/build/classes"/>
-        <property name="context-root" value="Exo2"/>
-                    
-    
+                
+        <property name="java-output-path" value="/TestJEE1/build/classes"/>
+        <property name="context-root" value="TestJEE1"/>
+            
     </wb-module>
-        
-
+    
 </project-modules>

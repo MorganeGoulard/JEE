@@ -1,6 +1,5 @@
 package fr.cleverdev;
 
-import java.util.Iterator;
 import java.util.List;
 
 import fr.cleverdev.dao.AuteurDao;
