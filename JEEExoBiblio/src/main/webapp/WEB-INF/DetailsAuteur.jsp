@@ -12,7 +12,7 @@
 
 	<c:import url="/WEB-INF/menu.jsp" />
 
-	<h1> Recherche d'un auteur </h1>
+	<h1> Détails de ${ auteur.nom } ${ auteur.prenom} </h1>
 	
 	
 	<c:choose>
@@ -23,16 +23,12 @@
 			<table>
 			<thead>
 				<tr>
-					<th>nom</th>
-					<th>prenom</th>
 					<th>téléphone</th>
 					<th>email</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
-					<td><c:out value="${ auteur.nom }"/></td>
-					<td><c:out value="${ auteur.prenom }"/></td>
 					<td><c:out value="${ auteur.telephone }"/></td>
 					<td><c:out value="${ auteur.email }"/></td>
 				</tr>
@@ -43,7 +39,7 @@
 	</c:choose>		
 	
 	
-	<a href="/ListeAuteurs">Retour à la liste d'auteurs</a>
+	<p><a href="<c:url value="/ListeAuteurs" />">Retour à la liste d'auteur</a></p>
 
 </body>
 </html>

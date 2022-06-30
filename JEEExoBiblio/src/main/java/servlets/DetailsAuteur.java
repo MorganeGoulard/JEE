@@ -1,8 +1,6 @@
 package servlets;
 
 import java.io.IOException;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,38 +12,37 @@ import dao.DaoException;
 import dao.DaoFactory;
 import model.Auteur;
 
-@WebServlet("/ListeAuteurs")
-public class ListeAuteurs extends HttpServlet {
+
+@WebServlet("/DetailsAuteur")
+public class DetailsAuteur extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-      
+       
 	private AuteurDao auteurDao;
-   
-    public ListeAuteurs() {
+
+    public DetailsAuteur() {
         super();
         auteurDao = DaoFactory.getInstance().getAuteurDao();
     }
 
-    
-	
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		long id;
 		
-			List<Auteur> auteurs=null;
-			try {
-				auteurs = auteurDao.lister();
-			} catch (DaoException e) {
-				e.printStackTrace();
-			}
-			
-			request.setAttribute("auteurs", auteurs);
-			
-			
-			this.getServletContext().getRequestDispatcher("/WEB-INF/ListeAuteurs.jsp").forward(request, response);
-			
-		} 
-
+		id = Long.parseLong(request.getParameter("id"));
+		Auteur auteurRecherche=null;
 		
-			
+		try {
+			auteurRecherche = auteurDao.trouver(id);
+		} catch (DaoException e) {
+			e.printStackTrace();
+		}
+		
+		request.setAttribute("auteur", auteurRecherche);
+		
+		this.getServletContext().getRequestDispatcher("/WEB-INF/DetailsAuteur.jsp").forward(request, response);
 	}
 
+	
 
+}

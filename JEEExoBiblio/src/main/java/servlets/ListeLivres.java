@@ -51,7 +51,6 @@ public class ListeLivres extends HttpServlet {
 			try {
 				livreRecherche = livreDao.trouver(id);
 			} catch (DaoException e) {
-				livreRecherche=null;
 				e.printStackTrace();
 			}
 			

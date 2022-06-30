@@ -13,7 +13,7 @@
 
 	<c:import url="/WEB-INF/menu.jsp" />
 
-	<h1> Recherche d'un livre </h1>
+	<h1> Détail de ${ livre.titre } de ${ livre.auteur.nom } ${ ivre.auteur.prenom }</h1>
 	
 	
 	<c:choose>
@@ -24,16 +24,12 @@
 			<table>
 			<thead>
 				<tr>
-					<th>auteur</th>
-					<th>titre</th>
-					<th>nombre de pages</th>
-					<th>catégorie</th>
+					<th>Nombre de pages</th>
+					<th>Catégorie</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
-					<td><c:out value="${ livre.auteur.nom } ${ livre.auteur.prenom }"/></td>
-					<td><c:out value="${ livre.titre }"/></td>
 					<td><c:out value="${ livre.nbPages }"/></td>
 					<td><c:out value="${ livre.categorie }"/></td>
 				</tr>
@@ -44,7 +40,7 @@
 	</c:choose>		
 	
 	
-	<a href="/ListeLivres">Retour à la liste de livres</a>
+	<div><a href="<c:url value="/ListeLivres" />">Retour à la liste de livres</a></div>
 
 </body>
 </html>

@@ -19,10 +19,9 @@
 				<table>
 					<thead>
 						<tr>
-							<th>auteur</th>
-							<th>titre</th>
-							<th>nombre de pages</th>
-							<th>catégorie</th>
+							<th>Auteur</th>
+							<th>Titre</th>
+							<th colspan="2">Action</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -30,8 +29,9 @@
 						<tr>
 							<td><c:out value="${ livre.auteur.nom }"/> <c:out value="${ livre.auteur.prenom }"/></td>
 							<td><c:out value="${ livre.titre }"/></td>
-							<td><c:out value="${ livre.nbPages }"/></td>
-							<td><c:out value="${ livre.categorie }"/></td>
+							<td><a href="<c:url value="/ListeLivres"><c:param name="id" value="${ livre.id }" /></c:url>">Voir détails</a></td>
+							<td><a href="<c:url value="/SupprimerLivre"><c:param name="id" value="${ livre.id }" /></c:url>">Supprimer</a></td>
+							
 						</tr>	
 					</c:forEach>
 					</tbody>

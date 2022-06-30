@@ -19,10 +19,9 @@
 				<table>
 					<thead>
 						<tr>
-							<th>nom</th>
-							<th>prenom</th>
-							<th>téléphone</th>
-							<th>email</th>
+							<th>Nom</th>
+							<th>Prenom</th>
+							<th colspan = "2">Actions</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -30,8 +29,9 @@
 						<tr>
 							<td><c:out value="${ auteur.nom }"/></td>
 							<td><c:out value="${ auteur.prenom }"/></td>
-							<td><c:out value="${ auteur.telephone }"/></td>
-							<td><c:out value="${ auteur.email }"/></td>
+							<td><a href="<c:url value="/DetailsAuteur"><c:param name="id" value="${ auteur.id }" /></c:url>">Voir détails</a></td>
+							<td><a href="<c:url value="/SupprimerAuteur"><c:param name="id" value="${ auteur.id }" /></c:url>">Supprimer</a></td>
+							
 						</tr>	
 					</c:forEach>
 					</tbody>
@@ -39,6 +39,9 @@
 				</table>
 			</c:otherwise>
 	</c:choose>
+	
+		<div><a href="<c:url value="/AjouterAuteur" />">Ajouter un auteur</a></div>
+	
 	
 </body>
 </html>
