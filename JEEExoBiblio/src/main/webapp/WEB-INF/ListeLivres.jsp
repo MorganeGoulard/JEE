@@ -40,5 +40,7 @@
 			</c:otherwise>
 	</c:choose>
 	
+	<div><a href="<c:url value="/AjouterLivre" />">Ajouter un livre</a></div>
+	
 </body>
 </html>

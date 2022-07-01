@@ -21,7 +21,7 @@
 						<tr>
 							<th>Nom</th>
 							<th>Prenom</th>
-							<th colspan = "2">Actions</th>
+							<th colspan = "3">Actions</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -31,7 +31,7 @@
 							<td><c:out value="${ auteur.prenom }"/></td>
 							<td><a href="<c:url value="/DetailsAuteur"><c:param name="id" value="${ auteur.id }" /></c:url>">Voir détails</a></td>
 							<td><a href="<c:url value="/SupprimerAuteur"><c:param name="id" value="${ auteur.id }" /></c:url>">Supprimer</a></td>
-							
+							<td><a href="<c:url value="/ModifierAuteur"><c:param name="id" value="${ auteur.id }" /></c:url>">Modifier</a></td>
 						</tr>	
 					</c:forEach>
 					</tbody>
