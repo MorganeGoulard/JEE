@@ -1,7 +1,9 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -50,27 +52,75 @@ public class AjouterLivre extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		long idAuteur = Long.parseLong(request.getParameter("auteurLivre"));
 		String titre = request.getParameter("titreLivre");
-		int nbPages = Integer.parseInt(request.getParameter("nbPagesLivre"));
+		int nbPages = 0;
 		String categorie = request.getParameter("categorieLivre");
+		
+
+		Auteur auteur = null;
+		
+		Map<String, String> erreurs = new HashMap<String, String>();
+		
+		if(titre != null) {
+			if(titre.length() < 2 || titre.length() > 50) {
+				erreurs.put("titreLivre", "Le titre du livre ne doit pas excéder 60 caractères");
+			}
+			
+		} else {
+			erreurs.put("titreLivre", "Veuillez ajouter un titre au livre");
+		}
+		
+		
+		try {
+			nbPages = Integer.parseInt(request.getParameter("nbPagesLivre"));
+		} catch (NumberFormatException e) {
+			erreurs.put("nbPagesLivre", "Veuillez donner le nombre de pages");
+		}
+		
+		if(categorie != null) {
+			if (categorie.length() > 20) {
+				erreurs.put("categorieLivre", "La catégorie du livre ne doit pas accéder 20 caractères");
+			}
+		}
+		
+		try {
+			long idAuteur = Long.parseLong(request.getParameter("auteurLivre"));
+			auteur = auteurDao.trouver(idAuteur);
+		} catch (DaoException e) {
+				erreurs.put("auteurLivre", "L'auteur n'existe pas");
+		}
 		
 		Livre livreAAjouter = new Livre();
 		livreAAjouter.setTitre(titre);
 		livreAAjouter.setNbPages(nbPages);
 		livreAAjouter.setCategorie(categorie);
-		
-		try {
-			Auteur auteur = auteurDao.trouver(idAuteur);
-			livreAAjouter.setAuteur(auteur);
-			livreDao.creer(livreAAjouter);
-		} catch (DaoException e) {
-			e.printStackTrace();
+		livreAAjouter.setAuteur(auteur);
+
+		if (erreurs.isEmpty() ) {
+			
+			try {
+				livreDao.creer(livreAAjouter);
+			} catch (DaoException e) {
+				e.printStackTrace();
+			}
+			
+			response.sendRedirect(request.getContextPath() + "/ListeLivres");
+			
+		} else {
+			
+			List<Auteur> auteurs = null;
+			
+			try {
+				auteurs = auteurDao.lister();
+				request.setAttribute("auteurs", auteurs);
+			} catch (DaoException e) {
+				e.printStackTrace();
+			}
+			
+			request.setAttribute("livre", livreAAjouter);
+			request.setAttribute("erreurs", erreurs);
+			this.getServletContext().getRequestDispatcher("/WEB-INF/AjouterLivre.jsp").forward(request, response);		
 		}
-		
-				
-		
-		response.sendRedirect(request.getContextPath() + "/ListeLivres");
 
 	}
 

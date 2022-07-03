@@ -21,7 +21,7 @@
 						<tr>
 							<th>Auteur</th>
 							<th>Titre</th>
-							<th colspan="2">Action</th>
+							<th colspan="3">Action</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -31,7 +31,7 @@
 							<td><c:out value="${ livre.titre }"/></td>
 							<td><a href="<c:url value="/ListeLivres"><c:param name="id" value="${ livre.id }" /></c:url>">Voir détails</a></td>
 							<td><a href="<c:url value="/SupprimerLivre"><c:param name="id" value="${ livre.id }" /></c:url>">Supprimer</a></td>
-							
+							<td><a href="<c:url value="/ModifierLivre"><c:param name="id" value="${ livre.id }" /></c:url>">Modifier</a></td>
 						</tr>	
 					</c:forEach>
 					</tbody>

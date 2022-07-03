@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Modifier livre</title>
 </head>
 <body>
 
@@ -17,22 +17,22 @@
 			<label for="auteurLivre">Auteur</label>
 			<select id="auteurLivre" name="auteurLivre">
 				<c:forEach items="${ auteurs }" var="auteur">
-					<option value="<c:out value="${ auteur.id }"/>"><c:out value="${ auteur.prenom }"/> <c:out value="${ auteur.nom }"/></option>
+					<option value="<c:out value="${ auteur.id }"/>" ${ auteur.id == livre.auteur.id ? "selected" : "" }><c:out value="${ auteur.prenom }"/> <c:out value="${ auteur.nom }"/></option>
 				</c:forEach>
 			</select>
 		</div>
 	
 		<div>
 			<label for="titreLivre">Titre</label>
-			<input type="text" id="titreLivre" name="titreLivre"/>
+			<input type="text" id="titreLivre" name="titreLivre" value="<c:out value="${ livre.titre }" /> " />
 		</div>
 		<div>
 			<label for="nbPagesLivre">Nombre de pages</label>
-			<input type="text" id="nbPagesLivre" name="nbPagesLivre"/>
+			<input type="number" id="nbPagesLivre" name="nbPagesLivre" value="<c:out value="${ livre.nbPages }" /> " />
 		</div>
 		<div>
 			<label for="categorieLivre">Catégorie</label>
-			<input type="text" id="categorieLivre" name="categorieLivre"/>
+			<input type="text" id="categorieLivre" name="categorieLivre"  value="<c:out value="${ livre.categorie }" /> " />
 		</div>
 		<div>
 			<input type="submit" value="Modifier" />

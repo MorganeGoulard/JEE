@@ -34,15 +34,15 @@ public class ModifierLivre extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		long id = Long.parseLong(request.getParameter("id"));
 		List<Auteur> auteurs; 
-		List<Livre> livres;
+		long id = Long.parseLong(request.getParameter("id"));
+		Livre livre;
 		
 		try {
 			auteurs = auteurDao.lister();
-			livres = livreDao.lister();
+			livre = livreDao.trouver(id);
 			request.setAttribute("auteurs", auteurs);
-			request.setAttribute("livre", livres);
+			request.setAttribute("livre", livre);
 		} catch (DaoException e) {
 			e.printStackTrace();
 		}
@@ -62,16 +62,26 @@ public class ModifierLivre extends HttpServlet {
 		String categorie = request.getParameter("categorieLivre");
 		long idAuteur = Long.parseLong(request.getParameter("auteurLivre"));
 		
+		try {
 		Livre livreAModifier = new Livre();
+		Auteur auteur; 
+		
+		auteur = auteurDao.trouver(idAuteur);
+		livreAModifier = livreDao.trouver(id);
+		
 		livreAModifier.setTitre(titre);
 		livreAModifier.setNbPages(nbPages);
 		livreAModifier.setCategorie(categorie);
+		livreAModifier.setAuteur(auteur);
 		
-		try {
 			livreDao.modifier(livreAModifier);
+			
 		} catch (DaoException e) {
 			e.printStackTrace();
 		}
+		
+		response.sendRedirect(request.getContextPath() + "/ListeLivres");
+
 		
 	}
 

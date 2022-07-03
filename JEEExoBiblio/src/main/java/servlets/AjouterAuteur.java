@@ -75,7 +75,7 @@ public class AjouterAuteur extends HttpServlet {
 			if(email.length() > 60) {
 				erreurs.put("emailAuteur","L'émail doit avoir au maximum 60 caractères");
 			}
-			if(!email.matches("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+(?:\\\\.[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+)*@[a-zA-Z0-9-]+(?:\\\\.[a-zA-Z0-9-]+)*$")) {
+			if(!email.matches("([^.@]+)(\\.[^.@]+)*@([^.@]+\\.)+([^.@]+)")) {
 				erreurs.put("emailAuteur","Veuillez saisir une adresse mail valide");
 			}
 		}

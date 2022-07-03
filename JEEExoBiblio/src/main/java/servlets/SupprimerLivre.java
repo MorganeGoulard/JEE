@@ -36,7 +36,7 @@ public class SupprimerLivre extends HttpServlet {
 		} catch (DaoException e) {
 			e.printStackTrace();
 		}
-		response.sendRedirect(request.getContextPath() + "/ListeAuteurs");
+		response.sendRedirect(request.getContextPath() + "/ListeLivres");
 	}
 
 
