@@ -76,6 +76,7 @@ public class LivreDaoImpl implements LivreDao {
 				pst.setString(2, livre.getTitre());
 				pst.setLong(3, livre.getNbPages());
 				pst.setString(4, livre.getCategorie());
+				pst.setLong(5, livre.getId());
 				
 				int statut = pst.executeUpdate();
 				
