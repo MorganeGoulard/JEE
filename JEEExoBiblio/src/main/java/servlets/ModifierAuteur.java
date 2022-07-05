@@ -110,7 +110,7 @@ public class ModifierAuteur extends HttpServlet {
 			
 			try {				
 				auteurDao.modifier(auteurAModifier);
-				
+				request.getSession().setAttribute("confirmationMsg", "L'auteur a bien été modifié !");
 			} catch (DaoException e) {
 				e.printStackTrace();
 			}

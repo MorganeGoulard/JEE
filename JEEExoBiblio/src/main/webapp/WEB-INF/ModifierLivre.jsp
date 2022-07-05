@@ -28,7 +28,7 @@
 		</div>
 		<div>
 			<label for="nbPagesLivre">Nombre de pages</label>
-			<input type="number" id="nbPagesLivre" name="nbPagesLivre" value="<c:out value="${ livre.nbPages }" /> " />
+			<input type="text" id="nbPagesLivre" name="nbPagesLivre" value="<c:out value="${ livre.nbPages }" /> " />
 		</div>
 		<div>
 			<label for="categorieLivre">Catégorie</label>

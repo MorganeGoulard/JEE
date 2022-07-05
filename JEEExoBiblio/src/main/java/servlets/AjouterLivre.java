@@ -100,6 +100,7 @@ public class AjouterLivre extends HttpServlet {
 			
 			try {
 				livreDao.creer(livreAAjouter);
+				request.getSession().setAttribute("confirmationMsg", "Le livre a bien été ajouté !");
 			} catch (DaoException e) {
 				e.printStackTrace();
 			}

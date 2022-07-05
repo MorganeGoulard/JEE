@@ -42,6 +42,7 @@ public class AjouterAuteur extends HttpServlet {
 		String telephone = request.getParameter("telephoneAuteur");
 		String email = request.getParameter("emailAuteur");
 		
+		
 		Map<String,String> erreurs = new HashMap<String,String>();		
 		
 		if(nom != null) {
@@ -89,11 +90,13 @@ public class AjouterAuteur extends HttpServlet {
 		if(erreurs.isEmpty()) {
 			try {
 				auteurDao.creer(auteur);
+				request.getSession().setAttribute("confirmationMsg", "L'auteur a bien été ajouté !");
 			} catch (DaoException e) {
 				e.printStackTrace();
 			}
 			
 			response.sendRedirect(request.getContextPath() + "/ListeAuteurs");
+			
 
 		} else {
 		

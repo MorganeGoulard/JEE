@@ -33,6 +33,7 @@ public class SupprimerLivre extends HttpServlet {
 		
 		try {
 			livreDao.supprimer(id);
+			request.getSession().setAttribute("confirmationMsg", "Le livre a bien été supprimé !");
 		} catch (DaoException e) {
 			e.printStackTrace();
 		}

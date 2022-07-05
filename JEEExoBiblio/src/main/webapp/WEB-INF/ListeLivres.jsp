@@ -10,6 +10,8 @@
 </head>
 <body>
 <c:import url="/WEB-INF/menu.jsp" />
+
+	<div>${ sessionScope.confirmationMsg }</div>
 	
 	<c:choose>
 			<c:when test="${ empty livres }">

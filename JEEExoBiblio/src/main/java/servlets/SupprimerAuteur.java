@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.AuteurDao;
 import dao.DaoException;
@@ -30,14 +31,19 @@ public class SupprimerAuteur extends HttpServlet {
 		
 		id = Long.parseLong(request.getParameter("id"));
 		
+		HttpSession session = request.getSession();
+
+		
 		
 		try {
 			auteurDao.supprimer(id);
+			request.getSession().setAttribute("confirmationMsg", "L'auteur a bien été supprimé !");
 		} catch (DaoException e) {
 			e.printStackTrace();
 		}
 		
 		response.sendRedirect(request.getContextPath() + "/ListeAuteurs");
+		
 		
 	}
 
