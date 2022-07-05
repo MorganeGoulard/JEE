@@ -1,8 +1,11 @@
 package dao;
 
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
+import utils.Configuration;
 
 public class DaoFactory {
  
@@ -20,17 +23,24 @@ public class DaoFactory {
 		this.passwd = passwd;
 	}
 	
-	public static DaoFactory getInstance() {
-		if ( DaoFactory.instanceSingleton == null ) {
-			try {
-			      Class.forName("org.postgresql.Driver");
-			      DaoFactory.instanceSingleton = new DaoFactory("jdbc:postgresql://localhost/biblio","postgres","poei35235");
-		  } catch(ClassNotFoundException e) {
-			  e.printStackTrace();
-		  }
+		public static DaoFactory getInstance() {
+			if ( DaoFactory.instanceSingleton == null ) {
+				try {
+					
+					  String dbDriver = Configuration.getConfig("db_driver");
+					  String dbHost = Configuration.getConfig("db_host");
+					  String dbName = Configuration.getConfig("db_database");
+					  String dbUsername = Configuration.getConfig("db_username");
+					  String dbPassword = Configuration.getConfig("db_password");
+					
+				      Class.forName(dbDriver);
+				      DaoFactory.instanceSingleton = new DaoFactory("jdbc:postgresql://"+dbHost+"/"+dbName, dbUsername, dbPassword);
+				} catch(ClassNotFoundException e) {
+					e.printStackTrace();
+				}
+			}
+			return DaoFactory.instanceSingleton;
 		}
-		return DaoFactory.instanceSingleton;
-	}
 	
 	public AuteurDao getAuteurDao() {
 		return new AuteurDaoImpl( this );
